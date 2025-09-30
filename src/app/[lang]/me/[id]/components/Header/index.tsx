@@ -2,11 +2,27 @@
 
 import { Input } from "@/components/common/Input";
 import { Search, User } from "lucide-react";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { HeaderProps } from "./types";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export const Header: FC<HeaderProps> = ({ dictionary }) => {
   const [search, setSearch] = useState<string>("");
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (debouncedSearch) {
+      params.set("search", debouncedSearch);
+    } else {
+      params.delete("search");
+    }
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?${params.toString()}`
+    );
+  }, [debouncedSearch]);
 
   return (
     <header className="flex flex-col items-start gap-10 mb-14">

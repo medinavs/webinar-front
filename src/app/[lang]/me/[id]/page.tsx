@@ -37,8 +37,6 @@ const Page: NextPage<MeDynamicPage> = async ({
 
   const data = await api.webinars.findRegisteredByUser(id);
 
-  const webinars = data?.webinars || [];
-
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
       <Sidebar dictionary={dictionary} />
@@ -47,14 +45,15 @@ const Page: NextPage<MeDynamicPage> = async ({
           <section>
             <Header dictionary={dictionary} />
             <SubscribedWebinars
-              webinars={webinars ?? []}
+              data={data ?? []}
               dictionary={dictionary}
               lang={lang}
+              userId={id}
             />
           </section>
           <section>
             <ProfileDetails
-              webinarsCount={webinars.length}
+              webinarsCount={data.webinars.length}
               dictionary={dictionary}
             />
           </section>

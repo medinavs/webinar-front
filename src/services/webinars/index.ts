@@ -53,11 +53,15 @@ export class Webinars {
         }
     }
 
-    findRegisteredByUser = async (userId: string) => {
+    findRegisteredByUser = async (userId: string, search?: string) => {
         try {
             if (!userId) throw new Error("User ID is required");
 
-            const response = await axiosInstance.get(`/webinars/registered/${userId}`);
+            const response = await axiosInstance.get(`/webinars/registered/${userId}`, {
+                params: {
+                    search
+                }
+            });
 
             return response.data;
         } catch (error) {
