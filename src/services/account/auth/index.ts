@@ -1,3 +1,4 @@
+import { CALLBACK_URL } from "@/constants/environments/callbackUrl";
 import { betterAuthClient } from "@/instances/auth/auth";
 import { User } from "@/types/common/user";
 
@@ -9,7 +10,7 @@ export class Auth {
             const response = await betterAuthClient.signIn.email({
                 email,
                 password,
-                callbackURL: 'http://localhost:3000'
+                callbackURL: CALLBACK_URL || 'http://localhost:3000'
             });
 
             if (response.error) {
@@ -33,7 +34,7 @@ export class Auth {
                 email: data.email,
                 password: data.password,
                 name: data.name,
-                callbackURL: 'http://localhost:3000'
+                callbackURL: CALLBACK_URL || 'http://localhost:3000'
             });
 
             return response;

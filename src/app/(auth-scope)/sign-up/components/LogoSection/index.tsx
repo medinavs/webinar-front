@@ -8,7 +8,10 @@ export const LogoSection: FC = () => {
       <Image
         src="/images/bg-login.webp"
         alt="Background"
-        layout="fill"
+        width={1920}
+        height={1080}
+        sizes="100vw"
+        priority
         className="absolute inset-0 w-full h-full bg-no-repeat bg-center bg-cover opacity-20 pointer-events-none"
       />
       <div className="relative flex items-center gap-2">

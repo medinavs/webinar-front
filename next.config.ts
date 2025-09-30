@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
       pathname: '/**',
     }],
     qualities: [25, 50, 75, 100],
+  },
+  rewrites: async () => {
+    return [
+      {
+        source: '/api/auth/:path*',
+        destination: process.env.NEXT_PUBLIC_PROXY_AUTH_URL ?? "",
+      },
+    ]
   }
 };
 

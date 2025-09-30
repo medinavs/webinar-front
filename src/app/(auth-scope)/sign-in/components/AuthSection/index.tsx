@@ -7,7 +7,6 @@ import { AuthSchema, AuthSchemaType } from "./schema";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/instances/api";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export const AuthSection = () => {
@@ -19,15 +18,10 @@ export const AuthSection = () => {
     },
   });
 
-  const router = useRouter();
-
   const authMutation = useMutation({
     mutationKey: ["sign-in"],
     mutationFn: async (data: AuthSchemaType) => {
       await api.account.auth.signIn(data.email, data.password);
-    },
-    onSuccess: () => {
-      router.push("/");
     },
     onError: (error) => {
       toast.error(error.message || "Erro ao fazer login");

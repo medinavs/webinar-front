@@ -1,11 +1,15 @@
 import { createAuthClient } from "better-auth/react";
 import { adminClient } from "better-auth/client/plugins"
+import { AUTH_URL } from "@/constants/environments/authUrl";
 
 export const betterAuthClient = createAuthClient({
-    baseURL: 'http://localhost:8080',
+    baseURL: AUTH_URL,
+    fetchOptions: {
+        credentials: 'include',
+    },
     plugins: [
         adminClient()
-    ]
+    ],
 })
 
 export type Session = typeof betterAuthClient.$Infer.Session;
