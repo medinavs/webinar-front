@@ -7,7 +7,10 @@ import { useSession } from "@/hooks/use-session";
 import { User } from "@/types/common/user";
 import { ProfileDetailsProps } from "./types";
 
-export const ProfileDetails: FC<ProfileDetailsProps> = ({ webinarsCount }) => {
+export const ProfileDetails: FC<ProfileDetailsProps> = ({
+  webinarsCount,
+  dictionary,
+}) => {
   const { user } = useSession();
 
   const profile = user || ({} as User);
@@ -25,7 +28,7 @@ export const ProfileDetails: FC<ProfileDetailsProps> = ({ webinarsCount }) => {
         </Avatar>
         <h2 className="mt-4 font-bold text-gray-100 text-xl">{profile.name}</h2>
         <p className="text-gray-400 text-sm mt-1">
-          membro desde de {memberSinceYear}
+          {dictionary.member_since} {memberSinceYear}
         </p>
       </div>
       <div className="block w-8 h-1 rounded-full mt-10 bg-gradient-to-r from-green-100 to-purple-100" />
@@ -33,7 +36,7 @@ export const ProfileDetails: FC<ProfileDetailsProps> = ({ webinarsCount }) => {
         <ProfileItem
           icon={<FileVideoCamera />}
           info={webinarsCount || 0}
-          label="Webinar(s) assistidos"
+          label={dictionary.watched_webinars}
         />
       </div>
     </div>

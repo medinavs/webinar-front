@@ -2,15 +2,15 @@
 import { FC, useState } from "react";
 import { Globe, Moon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { ContentProps } from "./types";
 
-export const Content: FC = () => {
+export const Content: FC<ContentProps> = ({ dictionary }) => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLang = pathname.split("/")[1] || "pt";
   const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   const handleLanguageChange = (lang: string) => {
-    // Redireciona para a mesma rota, mas com o idioma alterado
     const newPath = pathname.replace(`/${currentLang}`, `/${lang}`);
     router.push(newPath);
   };
@@ -36,9 +36,11 @@ export const Content: FC = () => {
             <Moon className="size-6" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-gray-100">Alterar tema</h2>
+            <h2 className="text-lg font-bold text-gray-100">
+              {dictionary.change_theme}
+            </h2>
             <p className="text-sm text-gray-300">
-              Escolha entre tema claro ou escuro
+              {dictionary.choose_between_light_and_dark}
             </p>
           </div>
         </div>
@@ -52,7 +54,7 @@ export const Content: FC = () => {
                 : "border-gray-600 text-gray-400"
             }`}
           >
-            Escuro
+            {dictionary.dark}
           </button>
           <button
             onClick={() => handleThemeChange("light")}
@@ -62,7 +64,7 @@ export const Content: FC = () => {
                 : "border-gray-600 text-gray-400"
             }`}
           >
-            Claro
+            {dictionary.light}
           </button>
         </div>
       </div>
@@ -73,9 +75,11 @@ export const Content: FC = () => {
             <Globe className="size-6" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-gray-100">Alterar idioma</h2>
+            <h2 className="text-lg font-bold text-gray-100">
+              {dictionary.change_language}
+            </h2>
             <p className="text-sm text-gray-300">
-              Escolha o idioma da interface
+              {dictionary.choose_your_preferred_language}
             </p>
           </div>
         </div>

@@ -22,11 +22,13 @@ const IMAGE_SIZES = {
 export const FeaturedWebinar: FC<FeaturedWebinarProps> = ({
   webinar,
   size = "md",
+  dictionary,
+  lang,
 }) => {
   const currentSize = IMAGE_SIZES[size];
 
   return (
-    <Link href={`/catalog/${webinar.id}`} className="block w-full">
+    <Link href={`/${lang}/catalog/${webinar.id}`} className="block w-full">
       <div
         className={cn(
           "flex gap-5 px-3 py-5 bg-gray-700 rounded-xl cursor-pointer",
@@ -72,7 +74,7 @@ export const FeaturedWebinar: FC<FeaturedWebinarProps> = ({
 
           <div className="flex justify-between items-center">
             <span className="flex items-center gap-1 text-sm font-medium text-green-200 opacity-0 transform translate-x-[-8px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-              Ver detalhes
+              {dictionary.view_details}
               <ArrowRight className="size-4" />
             </span>
           </div>

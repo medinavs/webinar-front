@@ -9,8 +9,12 @@ import { ArrowRight, Clock } from "lucide-react";
 import { getSplittedText } from "@/utils/helpers/getSplittedText";
 import { UsersAvatarMock } from "../UsersAvatar";
 
-export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({ webinar }) => {
-  const distance = getRelativeTimeString(new Date(webinar.createdAt), "pt-br");
+export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({
+  webinar,
+  dictionary,
+  lang,
+}) => {
+  const distance = getRelativeTimeString(new Date(webinar.createdAt), lang);
 
   return (
     <div className="flex flex-col w-full rounded-xl p-6 bg-gray-700">
@@ -64,10 +68,10 @@ export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({ webinar }) => {
             {getSplittedText(webinar.description, MAX_DESCRIPTION_LENGTH)}
             {webinar.description.length > MAX_DESCRIPTION_LENGTH && (
               <Link
-                href={`/catalog/${webinar.id}`}
+                href={`/${lang}/catalog/${webinar.id}`}
                 className="bg-none border-none text-[0.875rem] text-purple-100 font-bold ml-1"
               >
-                ver mais
+                {dictionary.view_more}
               </Link>
             )}
           </p>
@@ -76,10 +80,10 @@ export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({ webinar }) => {
       <div className="flex mt-4 items-center justify-between">
         <UsersAvatarMock />
         <Link
-          href={`/catalog/${webinar.id}`}
+          href={`/${lang}/catalog/${webinar.id}`}
           className="flex items-center gap-2 text-sm text-green-200 font-medium group"
         >
-          <span>Ver detalhes</span>
+          <span>{dictionary.view_details}</span>
           <ArrowRight className="size-4 mt-0.5 transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>

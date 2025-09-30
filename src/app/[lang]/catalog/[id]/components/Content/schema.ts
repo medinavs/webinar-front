@@ -1,10 +1,10 @@
 import z from "zod";
 
 export const subscriptionSchema = z.object({
-    name: z.string().min(2, "Nome deve ter no mínimo 2 caracteres"),
-    email: z.email("Email inválido"),
+    name: z.string().min(2, "name_too_short"),
+    email: z.email("email_invalid"),
     linkedinURL: z
-        .url("URL do LinkedIn inválida")
+        .url("linkedin_url_invalid")
         .optional()
         .or(z.literal("")),
 });

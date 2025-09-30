@@ -3,9 +3,9 @@ import Image from "next/image";
 import { FC } from "react";
 import { WebinarCardProps } from "./types";
 import { ArrowRight, Calendar, Clock, List } from "lucide-react";
-import Link from "next/link";
 import { getSplittedText } from "@/utils/helpers/getSplittedText";
 import { MAX_TITLE_LENGTH_CATALOG } from "@/constants/webinar/maxTitleLength";
+import Link from "next/link";
 
 const IMAGE_SIZES = {
   md: {
@@ -18,11 +18,16 @@ const IMAGE_SIZES = {
   },
 };
 
-export const WebinarCard: FC<WebinarCardProps> = ({ webinar, size = "md" }) => {
+export const WebinarCard: FC<WebinarCardProps> = ({
+  webinar,
+  size = "md",
+  lang,
+  dictionary,
+}) => {
   const currentSize = IMAGE_SIZES[size];
 
   return (
-    <Link href={`/catalog/${webinar.id}`} className="block w-full">
+    <Link href={`/${lang}/catalog/${webinar.id}`} className="block w-full">
       <div
         className={cn(
           "flex gap-5 px-4 py-5 bg-gray-700 rounded-xl cursor-pointer first:mt-2",
@@ -62,7 +67,7 @@ export const WebinarCard: FC<WebinarCardProps> = ({ webinar, size = "md" }) => {
               <div className="flex items-center gap-2 bg-gray-800/50 px-3 py-1 rounded-full">
                 <Calendar className="size-3.5 text-green-200" />
                 <p className="text-xs font-medium text-gray-300">
-                  {new Date(webinar.date).toLocaleDateString("pt-BR", {
+                  {new Date(webinar.date).toLocaleDateString(lang, {
                     day: "2-digit",
                     month: "2-digit",
                     year: "2-digit",
@@ -80,7 +85,7 @@ export const WebinarCard: FC<WebinarCardProps> = ({ webinar, size = "md" }) => {
 
           <div className="flex justify-end items-center">
             <span className="flex items-center gap-1 text-sm font-medium text-green-200 opacity-0 transform translate-x-[-8px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-              Ver detalhes
+              {dictionary.see_details}
               <ArrowRight className="size-4" />
             </span>
           </div>

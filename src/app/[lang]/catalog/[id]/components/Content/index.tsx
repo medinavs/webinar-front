@@ -13,11 +13,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubscriptionFormData, subscriptionSchema } from "./schema";
 import { Input } from "@/components/common/Input";
 
-export const Content: FC<ContentProps> = ({ data }) => {
+export const Content: FC<ContentProps> = ({ data, dictionary, lang }) => {
   const { user } = useSession();
   const { webinar } = data;
-
-  console.log(webinar.registrations);
 
   const isUserAlreadySubscribed = webinar.registrations?.some(
     (registration) => registration.user?.id === user?.id
@@ -51,13 +49,13 @@ export const Content: FC<ContentProps> = ({ data }) => {
       });
     },
     onSuccess: () => {
-      toast.success("Inscrição realizada com sucesso!");
+      toast.success(dictionary.subscribe_success_message);
       setIsSubscribed(true);
       setShowForm(false);
       reset();
     },
     onError: () => {
-      toast.error("Erro ao realizar inscrição. Tente novamente.");
+      toast.error(dictionary.subscribe_error_message);
     },
   });
 
@@ -105,7 +103,9 @@ export const Content: FC<ContentProps> = ({ data }) => {
               <User className="size-5 text-green-200" />
             </div>
             <div>
-              <p className="text-xs text-gray-400 mb-0.5">Palestrante</p>
+              <p className="text-xs text-gray-400 mb-0.5">
+                {dictionary.speaker}
+              </p>
               <p className="text-sm font-medium text-gray-200">
                 {webinar.speaker.name}
               </p>
@@ -118,9 +118,11 @@ export const Content: FC<ContentProps> = ({ data }) => {
                 <Calendar className="size-5 text-green-200" />
               </div>
               <div>
-                <p className="text-xs text-gray-400 mb-0.5">Data</p>
+                <p className="text-xs text-gray-400 mb-0.5">
+                  {dictionary.date}
+                </p>
                 <p className="text-sm font-medium text-gray-200">
-                  {new Date(webinar.date).toLocaleDateString("pt-BR", {
+                  {new Date(webinar.date).toLocaleDateString(lang, {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
@@ -138,7 +140,9 @@ export const Content: FC<ContentProps> = ({ data }) => {
                 <Tag className="size-5 text-green-200" />
               </div>
               <div>
-                <p className="text-xs text-gray-400 mb-0.5">Categoria</p>
+                <p className="text-xs text-gray-400 mb-0.5">
+                  {dictionary.category}
+                </p>
                 <p className="text-sm font-medium text-gray-200">
                   {webinar.category}
                 </p>
@@ -149,7 +153,7 @@ export const Content: FC<ContentProps> = ({ data }) => {
 
         <div className="bg-gray-800/20 rounded-lg p-5 border border-gray-600/20">
           <h2 className="font-bold text-gray-100 text-lg mb-3 flex items-center gap-2">
-            Sobre o Webinar
+            {dictionary.about_the_webinar}
           </h2>
           <p className="text-gray-300 leading-relaxed whitespace-pre-wrap">
             {webinar.description}
@@ -162,7 +166,7 @@ export const Content: FC<ContentProps> = ({ data }) => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-gray-100 text-lg">
-                Preencha seus dados
+                {dictionary.fill_your_data}
               </h3>
               <button
                 type="button"
@@ -178,18 +182,18 @@ export const Content: FC<ContentProps> = ({ data }) => {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-300 mb-1.5"
               >
-                Nome completo *
+                {dictionary.full_name} *
               </label>
               <Input
                 {...register("name")}
                 id="name"
                 type="text"
                 className={cn(errors.name ? "border-red-400" : "")}
-                placeholder="Seu nome completo"
+                placeholder={dictionary.full_name_placeholder}
               />
               {errors.name && (
                 <p className="text-red-400 text-xs mt-1">
-                  {errors.name.message}
+                  {dictionary.name_too_short}
                 </p>
               )}
             </div>
@@ -206,11 +210,11 @@ export const Content: FC<ContentProps> = ({ data }) => {
                 id="email"
                 type="email"
                 className={cn(errors.email ? "border-red-400" : "")}
-                placeholder="seu@email.com"
+                placeholder="my@email.com"
               />
               {errors.email && (
                 <p className="text-red-400 text-xs mt-1">
-                  {errors.email.message}
+                  {dictionary.invalid_email}
                 </p>
               )}
             </div>
@@ -227,11 +231,11 @@ export const Content: FC<ContentProps> = ({ data }) => {
                 id="linkedinURL"
                 type="url"
                 className={cn(errors.linkedinURL ? "border-red-400" : "")}
-                placeholder="https://linkedin.com/in/seu-perfil"
+                placeholder="https://linkedin.com/in/your-profile"
               />
               {errors.linkedinURL && (
                 <p className="text-red-400 text-xs mt-1">
-                  {errors.linkedinURL.message}
+                  {dictionary.invalid_linkedin_url}
                 </p>
               )}
             </div>
@@ -249,8 +253,8 @@ export const Content: FC<ContentProps> = ({ data }) => {
               )}
             >
               {subscribeMutation.isPending
-                ? "Inscrevendo..."
-                : "Confirmar Inscrição"}
+                ? dictionary.subscribing
+                : dictionary.confirm_subscribe_to_webinar}
             </button>
           </form>
         ) : (
@@ -269,10 +273,10 @@ export const Content: FC<ContentProps> = ({ data }) => {
             {isSubscribed || isUserAlreadySubscribed ? (
               <>
                 <CheckCircle className="size-5" />
-                Inscrito
+                {dictionary.subscribed}
               </>
             ) : (
-              "Inscrever-se no Webinar"
+              dictionary.subscribe_to_webinar
             )}
           </button>
         )}

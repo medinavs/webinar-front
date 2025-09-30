@@ -7,9 +7,12 @@ import { ArrowRight } from "lucide-react";
 
 export const ProfileWebinarCard: FC<ProfileWebinarCardProps> = ({
   webinar,
+  dictionary,
+  lang,
 }) => {
   const distance = getRelativeTimeString(
-    new Date(webinar.registrationDate || webinar.createdAt)
+    new Date(webinar.registrationDate || webinar.createdAt),
+    lang
   );
 
   return (
@@ -19,7 +22,7 @@ export const ProfileWebinarCard: FC<ProfileWebinarCardProps> = ({
       <div className="flex flex-col gap-6 bg-gray-700 rounded-xl p-6">
         <div className="flex gap-6 ">
           <Link
-            href={`/catalog?webinar=${webinar.id}`}
+            href={`/${lang}/catalog/${webinar.id}`}
             style={{ display: "flex" }}
           >
             <Image
@@ -45,7 +48,7 @@ export const ProfileWebinarCard: FC<ProfileWebinarCardProps> = ({
           href={`/catalog?webinar=${webinar.id}`}
           className="flex items-center gap-2 self-end text-sm text-green-200 font-medium group"
         >
-          <span>Ver detalhes</span>
+          <span>{dictionary.view_details}</span>
           <ArrowRight className="size-4 mt-0.5 transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>

@@ -41,15 +41,22 @@ const Page: NextPage<MeDynamicPage> = async ({
 
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
-      <Sidebar />
+      <Sidebar dictionary={dictionary} />
       <div className="w-full h-[calc(100vh-1rem)] max-w-[996px] mx-auto pt-16">
         <main className="grid grid-cols-[1fr_308px] h-full gap-[64px] overflow-hidden">
           <section>
-            <Header />
-            <SubscribedWebinars webinars={webinars ?? []} />
+            <Header dictionary={dictionary} />
+            <SubscribedWebinars
+              webinars={webinars ?? []}
+              dictionary={dictionary}
+              lang={lang}
+            />
           </section>
           <section>
-            <ProfileDetails webinarsCount={webinars.length} />
+            <ProfileDetails
+              webinarsCount={webinars.length}
+              dictionary={dictionary}
+            />
           </section>
         </main>
       </div>

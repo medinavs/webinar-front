@@ -10,7 +10,13 @@ export const MenuItem: FC<MenuItemProps> = ({ icon, label, to, selected }) => {
       )}
       <Link href={to} className="flex items-center gap-2">
         {icon}
-        <span className={`${!selected && "text-gray-400"}`}>{label}</span>
+        <span
+          className={`whitespace-nowrap min-w-[100px] ${
+            !selected ? "text-gray-400" : ""
+          }`}
+        >
+          {label}
+        </span>
       </Link>
     </li>
   );

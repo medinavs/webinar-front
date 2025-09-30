@@ -4,4 +4,6 @@ export interface ContentProps {
     data: {
         webinar: Webinar;
     };
+    dictionary: Record<string, string>;
+    lang: "en" | "pt";
 }

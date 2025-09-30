@@ -3,7 +3,10 @@ import { FC, useState } from "react";
 import { CategoriesFilterProps, Category } from "./types";
 import { Tag } from "@/components/common/Tag";
 
-export const CategoriesFilter: FC<CategoriesFilterProps> = ({ categories }) => {
+export const CategoriesFilter: FC<CategoriesFilterProps> = ({
+  categories,
+  dictionary,
+}) => {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
   const handleSelectCategory = (category: Category | null) => {
@@ -27,7 +30,7 @@ export const CategoriesFilter: FC<CategoriesFilterProps> = ({ categories }) => {
         active={activeCategory === null}
         onClick={() => handleSelectCategory(null)}
       >
-        Todas
+        {dictionary.all}
       </Tag>
       {categories.map((category) => (
         <Tag

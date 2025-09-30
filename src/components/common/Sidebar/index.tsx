@@ -14,8 +14,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "@/hooks/use-session";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { api } from "@/instances/api";
+import { SidebarProps } from "./types";
 
-export const Sidebar: FC = () => {
+export const Sidebar: FC<SidebarProps> = ({ dictionary }) => {
   const pathName = usePathname();
   const { user } = useSession();
   const router = useRouter();
@@ -29,7 +30,7 @@ export const Sidebar: FC = () => {
           className={`${pathName !== `/${lang}` && "text-gray-400"}`}
         />
       ),
-      label: "Início",
+      label: dictionary.home,
       to: `/${lang}`,
     },
     {
@@ -38,14 +39,14 @@ export const Sidebar: FC = () => {
           className={`${!pathName.endsWith("/catalog") && "text-gray-400"}`}
         />
       ),
-      label: "Catálogo",
+      label: dictionary.catalog,
       to: `/${lang}/catalog`,
     },
     {
       icon: (
         <User className={`${!pathName.endsWith("/me") && "text-gray-400"}`} />
       ),
-      label: "Meu Perfil",
+      label: dictionary.my_profile,
       to: `/${lang}/me/${user?.id || ""}`,
     },
     {
@@ -54,7 +55,7 @@ export const Sidebar: FC = () => {
           className={`${pathName !== "/settings" && "text-gray-400"}`}
         />
       ),
-      label: "Configurações",
+      label: dictionary.settings,
       to: `/${lang}/settings`,
     },
   ];

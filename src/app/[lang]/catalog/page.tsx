@@ -41,12 +41,16 @@ const Page: NextPage<HomeDynamicPage> = async ({
 
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
-      <Sidebar />
+      <Sidebar dictionary={dictionary} />
       <div className="w-full h-[calc(100vh-1rem)] max-w-[996px] mx-auto pt-16">
         <main className="flex flex-col w-full h-full overflow-hidden">
-          <Header />
-          <CategoriesFilter categories={categories} />
-          <WebinarsList data={webinarsData} />
+          <Header dictionary={dictionary} />
+          <CategoriesFilter categories={categories} dictionary={dictionary} />
+          <WebinarsList
+            data={webinarsData}
+            dictionary={dictionary}
+            lang={lang}
+          />
         </main>
       </div>
     </div>

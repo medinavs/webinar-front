@@ -5,4 +5,5 @@ export interface Category {
 
 export interface CategoriesFilterProps {
     categories: Category[]
+    dictionary: Record<string, string>;
 }

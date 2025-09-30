@@ -9,7 +9,11 @@ import { api } from "@/instances/api";
 import { Webinar } from "@/types/common/webinar";
 import { useSearchParams } from "next/navigation";
 
-export const WebinarsList: FC<WebinarsListProps> = ({ data }) => {
+export const WebinarsList: FC<WebinarsListProps> = ({
+  data,
+  dictionary,
+  lang,
+}) => {
   const searchParams = useSearchParams();
 
   const { data: webinarsData } = useQuery({
@@ -39,7 +43,13 @@ export const WebinarsList: FC<WebinarsListProps> = ({ data }) => {
       )}
     >
       {webinarsData?.webinars?.map((webinar: Webinar) => (
-        <WebinarCard key={webinar.id} webinar={webinar} size="lg" />
+        <WebinarCard
+          key={webinar.id}
+          webinar={webinar}
+          size="lg"
+          dictionary={dictionary}
+          lang={lang}
+        />
       ))}
     </div>
   );

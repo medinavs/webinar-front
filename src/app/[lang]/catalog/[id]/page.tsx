@@ -41,14 +41,12 @@ const Page: NextPage<CatalogDynamicPage> = async ({
 
   const data = await api.webinars.findById(id);
 
-  console.log("data", data);
-
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
-      <Sidebar />
+      <Sidebar dictionary={dictionary} />
       <div className="w-full h-[calc(100vh-2rem)] max-w-[996px] mx-auto pt-10">
         <main className="flex flex-col w-full h-full overflow-hidden">
-          <Content data={data ?? []} />
+          <Content data={data ?? []} dictionary={dictionary} lang={lang} />
         </main>
       </div>
     </div>

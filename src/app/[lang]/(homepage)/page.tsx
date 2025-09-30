@@ -41,15 +41,21 @@ const Page: NextPage<HomeDynamicPage> = async ({
 
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
-      <Sidebar />
+      <Sidebar dictionary={dictionary} />
       <div className="w-full h-[calc(100vh-1rem)] max-w-[996px] mx-auto pt-16">
         <section className="grid grid-cols-[1fr_308px] h-full gap-[64px] overflow-hidden w-full">
           <div>
-            <Header />
-            <LatestWebinars webinars={data.webinars} />
+            <Header dictionary={dictionary} />
+            <LatestWebinars
+              webinars={data.webinars}
+              dictionary={dictionary}
+              lang={lang}
+            />
           </div>
           <PopularWebinars
             popularWebinars={data.webinars ? data.webinars.slice(0, 3) : []}
+            dictionary={dictionary}
+            lang={lang}
           />
         </section>
       </div>

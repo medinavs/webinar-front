@@ -5,7 +5,6 @@ import { Sidebar } from "@/components/common/Sidebar";
 import { SettingsDynamicPage } from "./types";
 import { Header } from "./Header";
 import { Content } from "./Content";
-import { api } from "@/instances/api";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
@@ -35,11 +34,11 @@ const Page: NextPage<SettingsDynamicPage> = async ({
 
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
-      <Sidebar />
+      <Sidebar dictionary={dictionary} />
       <div className="w-full h-[calc(100vh-1rem)] max-w-[996px] mx-auto pt-16">
         <main className="flex flex-col w-full h-full overflow-hidden">
-          <Header />
-          <Content />
+          <Header dictionary={dictionary} />
+          <Content dictionary={dictionary} />
         </main>
       </div>
     </div>
