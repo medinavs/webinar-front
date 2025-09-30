@@ -45,5 +45,8 @@
   "email_placeholder": "seu@email.com",
   "update_user_success_message": "Perfil atualizado com sucesso!",
   "update_user_error_message": "Erro ao atualizar perfil. Tente novamente.",
-  "optional": "opcional"
+  "optional": "opcional",
+  "registrations": "Inscrições",
+  "users_registered": "Usuário(s) inscrito(s)",
+  "cannot_subscribe_own_webinar": "Você não pode se inscrever no seu próprio webinar"
 }

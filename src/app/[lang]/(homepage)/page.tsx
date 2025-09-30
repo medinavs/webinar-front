@@ -37,7 +37,11 @@ const Page: NextPage<HomeDynamicPage> = async ({
 
   const data: {
     webinars: Webinar[];
-  } = await api.webinars.findAll({ filters: {} });
+  } = await api.webinars.findRecents();
+
+  const popularWebinarsData: {
+    webinars: Webinar[];
+  } = await api.webinars.findPopulars();
 
   return (
     <div className="flex h-screen bg-gray-800 p-4 text-gray-100">
@@ -53,7 +57,7 @@ const Page: NextPage<HomeDynamicPage> = async ({
             />
           </div>
           <PopularWebinars
-            popularWebinars={data.webinars ? data.webinars.slice(0, 3) : []}
+            popularWebinars={popularWebinarsData.webinars || []}
             dictionary={dictionary}
             lang={lang}
           />

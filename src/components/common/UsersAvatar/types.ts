@@ -2,7 +2,7 @@ export interface UsersAvatarProps {
     users: {
         id: string;
         name: string;
-        avatarUrl: string;
+        image: string;
     }[];
     maxAvatarsToShow?: number;
 }

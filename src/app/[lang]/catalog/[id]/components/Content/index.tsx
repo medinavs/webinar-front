@@ -1,7 +1,15 @@
 "use client";
 import { FC, useState } from "react";
 import Image from "next/image";
-import { Clock, Calendar, User, Tag, CheckCircle, X } from "lucide-react";
+import {
+  Clock,
+  Calendar,
+  User,
+  Tag,
+  CheckCircle,
+  X,
+  User2,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ContentProps } from "./types";
 import { useSession } from "@/hooks/use-session";
@@ -20,6 +28,8 @@ export const Content: FC<ContentProps> = ({ data, dictionary, lang }) => {
   const isUserAlreadySubscribed = webinar.registrations?.some(
     (registration) => registration.user?.id === user?.id
   );
+
+  const isUserAuthor = webinar.speakerId === user?.id;
 
   const [isSubscribed, setIsSubscribed] = useState(isUserAlreadySubscribed);
   const [showForm, setShowForm] = useState(false);
@@ -149,6 +159,22 @@ export const Content: FC<ContentProps> = ({ data, dictionary, lang }) => {
               </div>
             </div>
           )}
+
+          {webinar.registrations && (
+            <div className="flex items-center gap-3 bg-gray-800/30 rounded-lg p-4 border border-gray-600/30">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-200/10">
+                <User2 className="size-5 text-green-200" />
+              </div>
+              <div>
+                <p className="text-xs text-gray-400 mb-0.5">
+                  {dictionary.registrations}
+                </p>
+                <p className="text-sm font-medium text-gray-200">
+                  {webinar.registrations.length} {dictionary.users_registered}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="bg-gray-800/20 rounded-lg p-5 border border-gray-600/20">
@@ -270,7 +296,12 @@ export const Content: FC<ContentProps> = ({ data, dictionary, lang }) => {
                 : "bg-green-200 border-green-200 text-gray-900 hover:bg-green-200/80 hover:border-green-300 hover:shadow-md hover:translate-y-[-1px] cursor-pointer"
             )}
           >
-            {isSubscribed || isUserAlreadySubscribed ? (
+            {isUserAuthor ? (
+              <span className="text-gray-400 flex items-center gap-2">
+                <X className="size-5" />
+                {dictionary.cannot_subscribe_own_webinar}
+              </span>
+            ) : isSubscribed || isUserAlreadySubscribed ? (
               <>
                 <CheckCircle className="size-5" />
                 {dictionary.subscribed}

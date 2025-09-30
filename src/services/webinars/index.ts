@@ -6,8 +6,6 @@ export class Webinars {
         try {
             const { category, language, speakerId, dateFrom, dateTo, search } = filters;
 
-            console.log("filters", filters);
-
             const response = await axiosInstance.get("/webinars", {
                 params: {
                     category,
@@ -22,6 +20,24 @@ export class Webinars {
             return response.data;
         } catch (error) {
             console.error("Error fetching webinars:", error);
+        }
+    }
+
+    findRecents = async () => {
+        try {
+            const response = await axiosInstance.get("/webinars/recents");
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching recent webinars:", error);
+        }
+    }
+
+    findPopulars = async () => {
+        try {
+            const response = await axiosInstance.get("/webinars/populars");
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching popular webinars:", error);
         }
     }
 

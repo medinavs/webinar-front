@@ -7,7 +7,7 @@ import Image from "next/image";
 import { MAX_DESCRIPTION_LENGTH } from "@/constants/webinar/maxDescriptionLength";
 import { ArrowRight, Clock } from "lucide-react";
 import { getSplittedText } from "@/utils/helpers/getSplittedText";
-import { UsersAvatarMock } from "../UsersAvatar";
+import { UsersAvatar } from "../UsersAvatar";
 
 export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({
   webinar,
@@ -15,6 +15,22 @@ export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({
   lang,
 }) => {
   const distance = getRelativeTimeString(new Date(webinar.createdAt), lang);
+
+  const webinarRegistrationsMapped = webinar.registrations
+    ? webinar.registrations
+        .map((reg) =>
+          reg.user
+            ? {
+                id: reg.user.id,
+                name: reg.user.name,
+                image: reg.user.image ?? "",
+              }
+            : undefined
+        )
+        .filter(
+          (user): user is { id: string; name: string; image: string } => !!user
+        )
+    : [];
 
   return (
     <div className="flex flex-col w-full rounded-xl p-6 bg-gray-700">
@@ -78,7 +94,7 @@ export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({
         </div>
       </div>
       <div className="flex mt-4 items-center justify-between">
-        <UsersAvatarMock />
+        <UsersAvatar users={webinarRegistrationsMapped} maxAvatarsToShow={4} />
         <Link
           href={`/${lang}/catalog/${webinar.id}`}
           className="flex items-center gap-2 text-sm text-green-200 font-medium group"
