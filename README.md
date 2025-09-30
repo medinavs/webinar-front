@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# webinar-front
 
-## Getting Started
+## Instructions for Running the Project Locally
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 22+
+- (Optional) Docker for external services
+
+### Installation
+
+```sh
+git clone https://github.com/medinavs/webinar-front.git
+cd webinar-front
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Create a `.env` file in the root directory and configure necessary environment variables.
+- See `src/constants/environments/` for references.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Start the Application
 
-## Learn More
+```sh
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+- The app will be available at `http://localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture Decisions and Assumptions
 
-## Deploy on Vercel
+## Architecture Decisions and Assumptions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js (App Router)** for SSR, routing, and API routes.
+- **TypeScript** for type safety.
+- **React Query** for data fetching and caching.
+- **Axios** for HTTP requests.
+- **Validation**: Zod schemas for forms and APIs.
+- **Authentication**: Custom hooks and middleware for session management.
+- **Reusable UI components**: Located in `src/components/common` and `src/components/ui`.
+- **Service-Oriented Architecture (SOA)**: The application is organized in independent, service-based modules for scalability and maintainability.
+- **Internationalization support**: Language-based routing and dictionary utilities enable multi-language experiences.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Project Structure
+
+```
+src/
+├── app/                         # Next.js app router structure
+│   ├── (auth-scope)/            # Auth pages (sign-in, sign-up)
+│   ├── [lang]/                  # Language-based routing
+│   │   ├── (homepage)/          # Homepage per language
+│   │   ├── catalog/             # Webinar catalog
+│   │   ├── me/                  # User profile pages
+│   │   └── settings/            # User settings
+├── assets/                      # Static assets
+├── components/                  # Shared and domain-specific components
+│   ├── common/                  # Reusable UI components
+│   └── ui/                      # UI primitives
+├── constants/                   # App-wide constants
+├── hooks/                       # Custom React hooks
+├── instances/                   # API/Auth instances (API instance used to manage service classes)
+├── lib/                         # Utility libraries
+├── providers/                   # Context providers
+├── services/                    # API service layers
+├── styles/                      # Global styles
+├── types/                       # Shared TypeScript types
+└── utils/                       # Utility functions
+```
+
+---
+
+## Main Features
+
+- **Authentication**
+
+  - Sign-in and sign-up pages
+  - Session management
+
+- **Webinars**
+
+  - List webinars by category, text, and other filters
+  - View webinar details
+  - Register for webinars
+
+- **Categories**
+
+  - List Categories
+  - Filter webinars by category
+
+- **User Profile**
+
+  - View registered webinars + time of registration + registrations count
+
+- **Settings**
+  - Application settings (language, theme)
+
+---
+
+## Improvements and Next Steps
+
+- Add automated unit and integration tests.
+- Implement role-based access control.
+- Add internationalization for more languages.
+- Improve accessibility and mobile responsiveness.
+
+---
+
+## Additional Notes
+
+- Modular and scalable patterns for maintainability.
+- All UI components are reusable and typed.
+- Data fetching is optimized with React Query and SSR (hybrid).
