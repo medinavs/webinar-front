@@ -5,7 +5,7 @@ import { WebinarCardProps } from "./types";
 import { ArrowRight, Calendar, Clock, List } from "lucide-react";
 import Link from "next/link";
 import { getSplittedText } from "@/utils/helpers/getSplittedText";
-import { MAX_TITLE_LENGTH } from "@/constants/webinar/maxTitleLength";
+import { MAX_TITLE_LENGTH_CATALOG } from "@/constants/webinar/maxTitleLength";
 
 const IMAGE_SIZES = {
   md: {
@@ -49,7 +49,7 @@ export const WebinarCard: FC<WebinarCardProps> = ({ webinar, size = "md" }) => {
         <div className="flex flex-col justify-between flex-1">
           <div>
             <h3 className="flex font-bold text-base text-gray-100 overflow-hidden text-ellipsis line-clamp-2 [-webkit-box-orient:vertical] group-hover:text-green-100 transition-colors duration-300">
-              {getSplittedText(webinar.title, MAX_TITLE_LENGTH)}
+              {getSplittedText(webinar.title, MAX_TITLE_LENGTH_CATALOG)}
             </h3>
             <div className="mt-2 mb-4 flex items-center gap-2">
               <div className="flex items-center gap-2 bg-gray-800/50 px-3 py-1 rounded-full">

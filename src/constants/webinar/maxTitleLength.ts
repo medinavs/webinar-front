@@ -1,1 +1,2 @@
-export const MAX_TITLE_LENGTH = 12;
+export const MAX_TITLE_LENGTH_FEATURED = 12;
+export const MAX_TITLE_LENGTH_CATALOG = 15;
