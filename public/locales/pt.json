@@ -35,5 +35,15 @@
   "change_language": "Alterar idioma",
   "choose_your_preferred_language": "Escolha o idioma da interface",
   "subscribe_success_message": "Inscrição realizada com sucesso!",
-  "subscribe_error_message": "Erro ao realizar inscrição. Tente novamente."
+  "subscribe_error_message": "Erro ao realizar inscrição. Tente novamente.",
+  "invalid_url": "URL inválida",
+  "save_changes": "Salvar alterações",
+  "updating": "Atualizando...",
+  "update_your_personal_information": "Atualize suas informações pessoais",
+  "update_profile": "Atualizar Perfil",
+  "your_name": "Seu nome",
+  "email_placeholder": "seu@email.com",
+  "update_user_success_message": "Perfil atualizado com sucesso!",
+  "update_user_error_message": "Erro ao atualizar perfil. Tente novamente.",
+  "optional": "opcional"
 }

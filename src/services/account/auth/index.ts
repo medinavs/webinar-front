@@ -73,7 +73,18 @@ export class Auth {
 
     async updateUser(userData: Partial<User>) {
         try {
-            return await betterAuthClient.updateUser(userData);
+            console.log({ userData })
+
+            const userUpdated = await betterAuthClient.updateUser({
+                name: userData.name,
+                image: userData.image === "" ? undefined : userData.image,
+            })
+
+            if (userUpdated.error) {
+                throw new Error(userUpdated.error.message);
+            }
+
+            return userUpdated;
         } catch (error) {
             console.error("Update user error:", error);
             throw error;

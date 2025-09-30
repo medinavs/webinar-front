@@ -23,6 +23,11 @@ export const Sidebar: FC<SidebarProps> = ({ dictionary }) => {
 
   const lang = pathName.split("/")[1] || "pt";
 
+  function getLimitedName(name?: string, fallback: string = "Usuário") {
+    if (!name) return fallback;
+    return name.length > 18 ? name.slice(0, 15) + "..." : name;
+  }
+
   const menuItems = [
     {
       icon: (
@@ -99,7 +104,7 @@ export const Sidebar: FC<SidebarProps> = ({ dictionary }) => {
               {user?.name ? user.name.charAt(0) : "U"}
             </AvatarFallback>
           </Avatar>
-          <p className="text-sm text-gray-300">{user?.name || "Usuário"}</p>
+          <p className="text-sm text-gray-300">{getLimitedName(user?.name)}</p>
         </div>
         <LogOut
           className="size-5 text-gray-400 hover:text-red-500 cursor-pointer"

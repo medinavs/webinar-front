@@ -35,5 +35,15 @@
   "change_language": "Change language",
   "choose_your_preferred_language": "Choose your preferred interface language",
   "subscribe_success_message": "Subscription successful!",
-  "subscribe_error_message": "Error subscribing. Please try again."
+  "subscribe_error_message": "Error subscribing. Please try again.",
+  "invalid_url": "Invalid URL",
+  "save_changes": "Save changes",
+  "updating": "Updating...",
+  "update_your_personal_information": "Update your personal information",
+  "update_profile": "Update Profile",
+  "your_name": "Your name",
+  "email_placeholder": "your@email.com",
+  "update_user_success_message": "Profile updated successfully!",
+  "update_user_error_message": "Error updating profile. Please try again.",
+  "optional": "optional"
 }
