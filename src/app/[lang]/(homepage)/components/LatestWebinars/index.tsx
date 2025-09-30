@@ -3,9 +3,6 @@ import { LatestWebinarsProps } from "./types";
 import { AvatarWebinarCard } from "@/components/common/AvatarWebinarCard";
 
 export const LatestWebinars: FC<LatestWebinarsProps> = ({ webinars }) => {
-  const latestUserWebinarView = true;
-  const userId = "123";
-
   return (
     <div className="w-full h-full flex flex-col overflow-y-auto pb-10 [&::-webkit-scrollbar]:hidden">
       <p className="text-sm text-gray-100">Webinars mais recentes</p>
