@@ -11,6 +11,8 @@ import { Webinar } from "@/types/common/webinar";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
+export const revalidate = 60;
+
 export async function generateMetadata() {
   return getMetaData({
     title: "WebinarConnect | Home",
