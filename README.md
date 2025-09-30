@@ -95,7 +95,17 @@ src/
   - View registered webinars + time of registration + registrations count
 
 - **Settings**
-  - Application settings (language, theme)
+  - Application settings (language, user edit)
+
+---
+
+## Tradeoffs
+
+- Whenever possible, features are implemented using a hybrid SSR/client-side model to balance performance, SEO, and interactivity.
+- Avatar images are removed from webinar cards in the catalog for initial SSR, ensuring fast load and SEO; avatars are not displayed when filters are applied, as filtered results are rendered server-side.
+- Some UI features are simplified to prioritize SSR and scalability over rich client interactivity in catalog views.
+
+---
 
 ---
 
