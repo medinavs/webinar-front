@@ -12,8 +12,6 @@ import { UsersAvatarMock } from "../UsersAvatar";
 export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({ webinar }) => {
   const distance = getRelativeTimeString(new Date(webinar.createdAt), "pt-br");
 
-  console.log(webinar);
-
   return (
     <div className="flex flex-col w-full rounded-xl p-6 bg-gray-700">
       <div className="flex items-start justify-between mb-8">
@@ -24,7 +22,9 @@ export const AvatarWebinarCard: FC<AvatarWebinarCardProps> = ({ webinar }) => {
                 src={webinar.speaker.image ?? ""}
                 alt={webinar.speaker.name}
               />
-              <AvatarFallback>a</AvatarFallback>
+              <AvatarFallback className="bg-gray-600 text-gray-300">
+                {webinar.speaker.name && webinar.speaker.name.charAt(0)}
+              </AvatarFallback>
             </Avatar>
           </Link>
           <div>
