@@ -32,8 +32,6 @@ npm run dev
 
 ## Architecture Decisions and Assumptions
 
-## Architecture Decisions and Assumptions
-
 - **Next.js (App Router)** for SSR, routing, and API routes.
 - **TypeScript** for type safety.
 - **React Query** for data fetching and caching.
