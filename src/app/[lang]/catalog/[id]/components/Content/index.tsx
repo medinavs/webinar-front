@@ -9,6 +9,7 @@ import {
   CheckCircle,
   X,
   User2,
+  ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ContentProps } from "./types";
@@ -106,6 +107,36 @@ export const Content: FC<ContentProps> = ({ data, dictionary, lang }) => {
             </div>
           </div>
         </div>
+
+        {webinar.link &&
+          (isUserAlreadySubscribed || isSubscribed || isUserAuthor) && (
+            <div className="mb-6 bg-green-200/10 border border-green-200/30 rounded-lg p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex-1">
+                  <p className="text-xs text-green-200/80 mb-1 font-medium">
+                    {dictionary.webinar_link || "Link do Webinar"}
+                  </p>
+                  <a
+                    href={webinar.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-gray-200 hover:text-green-200 transition-colors break-all"
+                  >
+                    {webinar.link}
+                  </a>
+                </div>
+                <a
+                  href={webinar.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 flex items-center gap-2 px-4 py-2 bg-green-200 hover:bg-green-200/80 text-gray-900 rounded-lg font-medium text-sm transition-all duration-200 hover:shadow-md"
+                >
+                  {dictionary.access || "Acessar"}
+                  <ExternalLink className="size-4" />
+                </a>
+              </div>
+            </div>
+          )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
           <div className="flex items-center gap-3 bg-gray-800/30 rounded-lg p-4 border border-gray-600/30">
@@ -286,7 +317,7 @@ export const Content: FC<ContentProps> = ({ data, dictionary, lang }) => {
         ) : (
           <button
             onClick={handleButtonClick}
-            disabled={isUserAlreadySubscribed || isSubscribed}
+            disabled={isUserAlreadySubscribed || isSubscribed || isUserAuthor}
             className={cn(
               "w-full px-6 py-3 rounded-lg font-semibold text-base",
               "transition-all duration-300 shadow-sm",

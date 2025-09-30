@@ -45,7 +45,7 @@ export const ProfileWebinarCard: FC<ProfileWebinarCardProps> = ({
         </div>
         <p className="text-sm text-gray-300">{webinar.description}</p>
         <Link
-          href={`/catalog?webinar=${webinar.id}`}
+          href={`/${lang}/catalog/${webinar.id}`}
           className="flex items-center gap-2 self-end text-sm text-green-200 font-medium group"
         >
           <span>{dictionary.view_details}</span>

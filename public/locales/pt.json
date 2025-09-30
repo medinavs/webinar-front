@@ -48,5 +48,7 @@
   "optional": "opcional",
   "registrations": "Inscrições",
   "users_registered": "Usuário(s) inscrito(s)",
-  "cannot_subscribe_own_webinar": "Você não pode se inscrever no seu próprio webinar"
+  "cannot_subscribe_own_webinar": "Você não pode se inscrever no seu próprio webinar",
+  "access": "Acessar",
+  "webinar_link": "Link do Webinar"
 }
