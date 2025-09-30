@@ -10,7 +10,7 @@ export class Auth {
             const response = await betterAuthClient.signIn.email({
                 email,
                 password,
-                callbackURL: ""
+                callbackURL: CALLBACK_URL || 'http://localhost:3000'
             });
 
             if (response.error) {
