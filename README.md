@@ -107,8 +107,6 @@ src/
 
 ---
 
----
-
 ## Improvements and Next Steps
 
 - Add automated unit and integration tests.
